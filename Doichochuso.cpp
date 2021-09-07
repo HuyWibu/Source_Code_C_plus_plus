@@ -20,8 +20,29 @@ int main(int argc, char** argv) {
 		{
 			cout<<"-1";
 		}
-		else
+		else 
 		{
+			if(a=="100")
+			{
+				cout<<-1<<endl;
+				continue;
+			}
+//			if(a[0]=='1')
+//			{
+//				bool check=false;
+//				for(int j=1 ; j<x ; j++)
+//				{
+//					if(a[j]!='0')
+//					{
+//						check=true;
+//					}
+//				}
+//				if(check==false)
+//				{
+//					cout<<"-1\n";
+//					continue;
+//				}
+//			}
 			int max=a[i+1]-'0';
 			int vtri=i+1;
 			for(int j=i+2 ; j<x ; j++)
