@@ -1,50 +1,86 @@
-#include <bits/stdc++.h>
+#include <iostream>
+#include <cmath>
 using namespace std;
-/* run this program using the console pauser or add your own getch, system("pause") or input loop */
-
-int main(int argc, char** argv) {
-	int t;
-	cin>>t;
-	cin.ignore();
-	while(t--)
+int check1(int n)
+{
+	int m=n;
+	int sodao=0;
+	while(m)
 	{
-		string a;
-		cin>>a;
-		int x=a.length();
-		int i=0;
-		while(i<x-1 && (a[i]-'0'<a[i+1]-'0'))
+		sodao=sodao*10+m%10;
+		m/=10;
+	}
+	if(sodao==n) return 1;
+	else return 0;
+}
+int check2(int n)
+{
+	if(check1(n)==0)
+	{
+		return 0;
+	}
+	else
+	{
+		while(n)
 		{
-			i++;
+			int m=n%10;
+			if(m==0)
+			{
+				return 0;
+			}
+			n/=10;
 		}
-		if(i==x-1)
+		return 1;
+	}
+}
+int check3(int n)
+{
+	if(check1(n)==0||check2(n)==0)
+	{
+		return 0;
+	}
+	else
+	{
+		int sum=0;
+		while(n)
 		{
-			cout<<"-1";
+			sum+=n%10;
+			n/=10;
+		}
+		if(sum%10==0)
+		{
+			return 1;
 		}
 		else
-		{
-			int max=a[i+1]-'0';
-			int vtri=i+1;
-			for(int j=i+2 ; j<x ; j++)
-			{
-				if(max<a[j]-'0'&&a[j]-'0'<a[i]-'0')
-				{
-					max==a[j]-'0';
-					vtri=j;
-				}
-			}
-			for(int j=i ; j<x ; j++)
-			{
-				if(j==vtri)
-				{
-					char tmp=a[i];
-					a[i]=a[j];
-					a[j]=tmp;
-					break;
-				}
-			}
-			cout<<a;
-		}
-		cout<<endl;
+			return 0;
 	}
-	return 0;
 }
+int main()
+{
+	int N,M,K;
+	cin>>N>>M>>K;
+	int l=pow(10,5);
+	int k=pow(10,6)-1;
+	int dem1=0,dem2=0,dem3=0;
+	for(int i=l ; i<=k ; i++)
+	{
+		if(check1(i))
+		{
+			dem1++;
+		}
+		if(check2(i))
+		{
+			dem2++;
+		}
+		if(check3(i))
+		{
+			dem3++;
+		}
+	}
+	cout<<dem1<<" "<<dem2<<" "<<dem3<<endl;
+	if(N<=dem1&&M<=dem2&&K<=dem3)
+		cout<<"YES"<<endl;
+	else
+		cout<<"NO"<<endl;			// 900 1 1 : NO    50 100 50 : YES
+}	
+
