@@ -2,10 +2,10 @@
 #include <string>
 #include <algorithm>
 using namespace std;
-string s[100005];
-bool swapcompare(string a, string b)
+int s[100005];
+bool decrease(int a, int b)
 {
-	if(a+b>b+a)
+	if(a>b)
 		return true;
 	else
 		return false;
@@ -23,9 +23,9 @@ int main()
 			cin>>s[i];
 		}
 		// sap xep mang voi dieu kien
-		sort(s,s+n,swapcompare);
+		sort(s,s+n,decrease);
 		for(int i=0 ; i<n ; i++)
-			cout<<s[i];
+			cout<<s[i]<<" ";
 		cout<<endl;
 	}
 }
