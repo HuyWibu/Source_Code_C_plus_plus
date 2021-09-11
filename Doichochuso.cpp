@@ -1,71 +1,39 @@
-#include <bits/stdc++.h>
+#include <iostream>
+#include <string>
+#include <algorithm>
 using namespace std;
-/* run this program using the console pauser or add your own getch, system("pause") or input loop */
-
-int main(int argc, char** argv) {
+void test(string s)			// Vi du: 9 2 5 2 6 7 5 5 5 ----> 9 2 5 2 6 5 7 5 5
+{
+	int vtri=s.size()-2;		// vtri = do dai-2 ,vi vi du: do dai xau =9 phan tu cuoi cung la 8 ma minh muon xet tai vtri 7 va 8
+	while(vtri>=0&&s[vtri]<=s[vtri+1])	// tim vi tri ma tai do chu so tai vi tri do khong nho hon hoac bang chu so dung sau no!!!
+	{
+		vtri--;			// khong tim thay thi i--
+	}
+	if(vtri<0) cout<<"-1\n";		// neu den i<0 thi so nay luon tang ----> in ra -1
+	else
+	{
+		int xet=s.size()-1;			// so sanh chu so tai vi tri va xet
+		while(s[vtri]<=s[xet] || s[vtri]>s[xet]&&s[xet]==s[xet-1])	// neu s[i]<=s[j] thi bo qua (j--) do neu doi thi se thanh so lon hon mat!!!
+		{							//	hoac s[i]>s[j] va them dkien s[j]==s[j-1] nhu vi du tren(vi du 1755 (1557) ko lon hon dc 1575)
+			xet--;					 
+		}
+		swap(s[vtri],s[xet]);
+		if(s[0]=='0')
+		{
+			cout<<"-1\n";
+		}
+		else
+			cout<<s<<endl;
+	}
+}
+int main()
+{
 	int t;
 	cin>>t;
-	cin.ignore();
 	while(t--)
 	{
-		string a;
-		cin>>a;
-		int x=a.length();
-		int i=0;
-		while(i<x-1 && (a[i]-'0'<a[i+1]-'0'))
-		{
-			i++;
-		}
-		if(i==x-1)
-		{
-			cout<<"-1";
-		}
-		else 
-		{
-			if(a=="100")
-			{
-				cout<<-1<<endl;
-				continue;
-			}
-//			if(a[0]=='1')
-//			{
-//				bool check=false;
-//				for(int j=1 ; j<x ; j++)
-//				{
-//					if(a[j]!='0')
-//					{
-//						check=true;
-//					}
-//				}
-//				if(check==false)
-//				{
-//					cout<<"-1\n";
-//					continue;
-//				}
-//			}
-			int max=a[i+1]-'0';
-			int vtri=i+1;
-			for(int j=i+2 ; j<x ; j++)
-			{
-				if(max<a[j]-'0'&&a[j]-'0'<a[i]-'0')
-				{
-					max==a[j]-'0';
-					vtri=j;
-				}
-			}
-			for(int j=i ; j<x ; j++)
-			{
-				if(j==vtri)
-				{
-					char tmp=a[i];
-					a[i]=a[j];
-					a[j]=tmp;
-					break;
-				}
-			}
-			cout<<a;
-		}
-		cout<<endl;
+		string s;
+		cin>>s;
+		test(s);
 	}
-	return 0;
 }
