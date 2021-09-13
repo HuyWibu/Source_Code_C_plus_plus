@@ -1,49 +1,49 @@
-#include <iostream>
-#include <math.h>
+#include<iostream>
 using namespace std;
-/* run this program using the console pauser or add your own getch, system("pause") or input loop */
-typedef long long ll;
-ll ucln(ll x, ll y)
+int n,stop=0,a[9];
+void khoitao()
 {
-	ll z;
-	while(y)
+	for(int i=1;i<=n;i++)
+	a[i]=i;
+}
+void sinh()
+{
+	int i=n-1;
+	while(i>0&&a[i]>a[i+1])
+		i--;
+	if(i==0) stop=1;
+	else
 	{
-		z=x%y;
-		x=y;
-		y=z;
-	}
-	return x;
-}
-ll bcnn(ll x, ll y, ll z)
-{
-	ll m=x*y/ucln(x,y);
-	return m*z/ucln(m,z);
-}
-ll mu(int n)
-{
-	if(n==0)
-		return 1;
-	return 10*mu(n-1);
-}
-int main(int argc, char** argv) {
-	int t;
-	cin>>t;
-	while(t--)
-	{
-		int d=0;
-		ll x,y,z,n;
-		cin>>x>>y>>z>>n;
-		ll m=bcnn(x,y,z);
-		ll min=mu(n-1)/m+1;
-		if(mu(n-1)%m==0)
+		int k=n;
+		while(a[i]>a[k])
+			k--;
+		swap(a[k],a[i]);
+		int c=n,r=i+1;
+		while(r<c)
 		{
-			min--;
+			swap(a[c],a[r]);
+			r++;c--;
 		}
-		ll max=(mu(n)-1)/m;
-		if (min <= max)
-            cout << m*min << endl;
-        else
-            cout << "-1\n";
 	}
-	return 0;
+}
+void in()
+{
+	for(int i=1;i<=n;i++)
+		cout<<a[i];
+	cout<<endl;
+}
+void hoanvi()
+{
+	do
+	{
+		in();
+		sinh();
+	}
+	while(!stop);
+}
+main()
+{
+	cin>>n;
+	khoitao();
+	hoanvi();
 }
