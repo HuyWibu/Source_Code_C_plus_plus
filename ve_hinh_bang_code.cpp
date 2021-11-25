@@ -12,6 +12,6 @@ main()
 		//  system("color f4");
 		getline(file,line);
 		cout << line << "\n";
-		Sleep(80);
+		Sleep(50);
 	}
 }

@@ -1,33 +1,25 @@
-#include <iostream>
+#include <bits/stdc++.h>
 using namespace std;
-int minSwap(int a[], int n, int k)
-{											// 7 5 
-    int dem = 0;							// 2  3  4  7  5  8  10
+int Solve(int a[], int n, int k)
+{
+    int dem = 0;
     for (int i = 0; i < n; i++)
         if (a[i] <= k)
-            dem++;		// count =3
+            dem++;
     int loai = 0;
     for (int i = 0; i < dem; i++)
         if (a[i] > k)
-            loai++;			// loai =2
-    int tmp = loai;
+            loai++;
+    int kq = loai;
     for (int i = 0, j = dem; j < n; j++, i++)
     {
         if (a[i] > k)
             loai--;
         if (a[j] > k)
             loai++;
-        if(tmp<loai)
-        {
-        	tmp=tmp;
-		}
-		else
-		{
-			tmp=loai;
-		}
-//        tmp = (tmp < loai) ? tmp : loai;
+        kq = (kq < loai) ? kq : loai;
     }
-    return tmp;
+    return kq;
 }
 int main()
 {
@@ -37,9 +29,9 @@ int main()
     {
         int n, k;
         cin >> n >> k;
-        int a[n+2];
+        int a[n], dem = 0;
         for (int i = 0; i < n; i++)
             cin >> a[i];
-        cout << minSwap(a, n, k) << endl;
+        cout << Solve(a, n, k) << endl;
     }
 }

@@ -1,33 +1,34 @@
-#include <iostream>
+#include <bits/stdc++.h>
 using namespace std;
-const int MAXLIST = 10000;
-typedef struct list 
+struct ds
 {
-    int n;
-    int nodes[MAXLIST];
+    int key;
+    int val;
 };
-list ds;
 int main()
 {
-    int n=0;
-    int b[MAXLIST]={0};
-    do
+    int x;
+    vector<int> v;
+    map<int, int> mp;
+    while (cin >> x)
     {
-            cin>> ds.nodes[n];
-            b[ds.nodes[n]]++;
-            if(b[ds.nodes[n]]>1)
-            {
-                ds.nodes[n]=-1;
-            }
-            n++;
+        v.push_back(x);
+        mp[x]++;
     }
-    while(getchar()!='\n');
-    for(int i=0 ; i<n ; i++)
+    int n = v.size();
+    ds a[n];
+    for (int i = 0; i < n; i++)
     {
-        if(b[ds.nodes[i]]>0)
+        a[i].key = v[i];
+        a[i].val = mp[v[i]];
+    }
+    int b[n] = {0};
+    for (int i = 0; i < n; i++)
+    {
+        if (b[a[i].key] == 0)
         {
-            cout<<ds.nodes[i]<<" "<<b[ds.nodes[i]]<<endl;
+            cout << a[i].key << " " << a[i].val << endl;
+            b[a[i].key] = 1;
         }
     }
-
 }

@@ -1,31 +1,26 @@
-#include <iostream>
-#include <string>
-#include <algorithm>
+#include <bits/stdc++.h>
 using namespace std;
-int s[100005];
-bool decrease(int a, int b)
+string s[10000];
+bool check(string a, string b)
 {
-	if(a>b)
-		return true;
-	else
-		return false;
+    if (a + b > b + a)
+        return true;
+    else
+        return false;
 }
 int main()
 {
-	int t;
-	cin>>t;
-	while(t--)
-	{
-		int n;
-		cin>>n;
-		for(int i=0 ; i<n ; i++)
-		{
-			cin>>s[i];
-		}
-		// sap xep mang voi dieu kien
-		sort(s,s+n,decrease);
-		for(int i=0 ; i<n ; i++)
-			cout<<s[i]<<" ";
-		cout<<endl;
-	}
+    int t;
+    cin >> t;
+    while (t--)
+    {
+        int n;
+        cin >> n;
+        for (int i = 0; i < n; i++)
+            cin >> s[i];
+        sort(s, s + n, check);
+        for (int i = 0; i < n; i++)
+            cout << s[i];
+        cout << endl;
+    }
 }

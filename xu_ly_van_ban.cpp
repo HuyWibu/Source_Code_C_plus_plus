@@ -1,60 +1,58 @@
 #include <bits/stdc++.h>
 using namespace std;
-
-bool check(string s)
+string chuan_hoa(string s)
 {
-    if(s[s.length()-2]=='.' || s[s.length()-2]=='!' || s[s.length()-2]=='?')
-        return true;
-    return false;
+    for(int i=0 ; i<s.size() ; i++)
+    {
+        s[i]=tolower(s[i]);
+    }
+    s[0]=toupper(s[0]);
+    for(int i=0 ; i<s.size() ; i++)
+    {
+        if(s[i]=='.'||s[i]=='?'||s[i]=='!')
+        {
+            while(s[i+1]==' ')
+                i++;
+            i++;
+            s[i]=toupper(s[i]);
+        }
+    }
+    stringstream ss(s);
+    string tmp,a[100];
+    string temp="";
+    int k=0;
+    while(ss>>tmp)
+    {
+        a[k++]=tmp;
+    }
+    for(int i=0 ; i<k ; i++)
+    {
+        if(i==0)
+        {
+            temp=temp+a[i];
+        }
+        else 
+            temp=temp+" "+a[i];
+    }
+    return temp;
 }
-
 int main()
 {
-    string s,a[205],tmp,xuly[205],temp;
+    string s;
     getline(cin,s);
-    int x=0;
-
-    for(int i=0 ; i<s.length() ; i++)
+    string a[100],tmp,tmp1,tmp2;
+    stringstream ss(s);
+    while(getline(ss,tmp,'?'))
     {
-        if(s[i]!=' ')
+        stringstream p(tmp);
+        while(getline(p,tmp1,'!'))
         {
-            tmp+=a[i];
-        }
-        else
-        {
-            if(tmp!="")
+            stringstream q(tmp1);
+            while(getline(q,tmp2,'.'))
             {
-                a[x++]=tmp;
-                tmp="";
+                cout<<chuan_hoa(tmp2)<<endl;
             }
         }
     }
-    if(tmp!="")
-    {
-        a[x++]=tmp;
-    }
-    temp=a[0];
-    int dong=0;
-
-    for(int i=1 ; i<x ; i++)
-    {
-        if(check(a[i])==0)
-        {
-            temp+=" "+a[i];
-        }
-        else
-        {
-            temp+=" "+a[i];
-            xuly[dong++]=temp;
-            temp="";
-        }
-    }
-    if(temp!="")
-    {
-        xuly[dong++]=temp;
-    }
-    for(int i=0 ; i<dong ; i++)
-    {
-        cout<<xuly[i]<<endl;
-    }
+    
 }

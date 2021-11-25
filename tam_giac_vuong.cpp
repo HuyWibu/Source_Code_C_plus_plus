@@ -1,6 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
-// tam giác vuông với cạnh là các số nguyên thì luôn có 1 cạnh chia hết cho 4 :>    
+// tam giác vuông với cạnh là các số nguyên thì luôn có 1 cạnh chia hết cho 4 :>  
 int main()
 {
     int t;
@@ -15,24 +15,24 @@ int main()
             cin >> a[i];
             a[i] *= a[i];
         }
-        sort(a, a + n);
-        int x1 = n - 1, x2 = x1 - 1, x3 = 0, check = 0;
-        while (x2 != 0 && a[x1] != a[x2] + a[x3])
+        sort(a,a+n);
+        int x1=n-1, x2=x1-1, x3=0;
+        while(x2!=0 && a[x1]!=a[x2]+a[x3])
         {
-            if (a[x2] + a[x3] < a[x1])
+            if(a[x2]+a[x3]<a[x1])
                 x3++;
-            else if (a[x2] + a[x3] > a[x1])
+            else if(a[x2]+a[x3]>a[x1])
                 x2--;
-            if (x2 == x3)
+            if(x2==x3)
             {
                 x1--;
-                x2 = x1 - 1;
-                x3 = 0;
+                x2=x1-1;
+                x3=0;
             }
         }
-        if (x2 != 0)
-            cout << "YES\n";
-        else
-            cout << "NO\n";
+        if(x2!=0)
+            cout<<"YES\n";
+        else    
+            cout<<"NO\n";
     }
 }
